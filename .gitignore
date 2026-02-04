@@ -1,0 +1,9 @@
+# Compiled binary
+municourt
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
