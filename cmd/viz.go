@@ -50,9 +50,10 @@ func Viz(args []string) {
 	caseType := fs.String("type", "grand-total", "case type column")
 	county := fs.String("county", "", "county filter")
 	municipality := fs.String("municipality", "", "municipality filter")
+	pdfOut := fs.String("pdf", "", "output PDF file path (omit for terminal output)")
 
 	fs.Usage = func() {
-		fmt.Fprintf(os.Stderr, `Usage: municourt viz [flags]
+		fmt.Fprintf(os.Stderr, `Usage: municourt viz [dir] [flags]
 
 Visualize municipal court statistics over time.
 
@@ -64,13 +65,20 @@ Metrics: %s
 Types:   %s
 
 Examples:
-  municourt viz --dir ./parsed --level state --metric filings
-  municourt viz --dir ./parsed --level county
+  municourt viz ./parsed --level state --metric filings
+  municourt viz ./parsed --level county --pdf county.pdf
   municourt viz --dir ./parsed --level county --county ATLANTIC
   municourt viz --dir ./parsed --level municipality --county ATLANTIC
 `, strings.Join(validMetrics, ", "), strings.Join(validTypes, ", "))
 	}
+	// Reorder args so the first positional arg (dir) comes after all flags.
+	// Go's flag package stops parsing at the first non-flag argument.
+	args = reorderArgs(args)
 	fs.Parse(args)
+
+	if fs.NArg() > 0 {
+		*dir = fs.Arg(0)
+	}
 
 	if !contains(validMetrics, *metric) {
 		fmt.Fprintf(os.Stderr, "invalid --metric %q; valid options: %s\n", *metric, strings.Join(validMetrics, ", "))
@@ -115,6 +123,16 @@ Examples:
 		singleEntity = *county != ""
 	case "municipality":
 		singleEntity = *municipality != ""
+	}
+
+	if *pdfOut != "" {
+		sortedDates := sortDates(dates)
+		if err := renderPDF(*pdfOut, title, series, sortedDates, *level == "county", singleEntity); err != nil {
+			fmt.Fprintf(os.Stderr, "error writing PDF: %v\n", err)
+			os.Exit(1)
+		}
+		fmt.Printf("wrote %s\n", *pdfOut)
+		return
 	}
 
 	if singleEntity {
@@ -674,6 +692,38 @@ func typeLabel(t string) string {
 		"traffic-total":  "Traffic Total",
 	}
 	return labels[t]
+}
+
+// reorderArgs moves positional arguments to the end so that Go's flag package
+// can parse all flags regardless of where a positional dir argument appears.
+func reorderArgs(args []string) []string {
+	var flags, positional []string
+	for i := 0; i < len(args); i++ {
+		if args[i] == "--" {
+			positional = append(positional, args[i+1:]...)
+			break
+		}
+		if strings.HasPrefix(args[i], "-") {
+			flags = append(flags, args[i])
+			// Consume the next arg as the flag's value unless it looks like a flag itself.
+			if i+1 < len(args) && !strings.HasPrefix(args[i+1], "-") && !strings.Contains(args[i], "=") {
+				flags = append(flags, args[i+1])
+				i++
+			}
+		} else {
+			positional = append(positional, args[i])
+		}
+	}
+	return append(flags, positional...)
+}
+
+func sortDates(dates map[string]bool) []string {
+	sorted := make([]string, 0, len(dates))
+	for d := range dates {
+		sorted = append(sorted, d)
+	}
+	sort.Strings(sorted)
+	return sorted
 }
 
 func contains(list []string, s string) bool {

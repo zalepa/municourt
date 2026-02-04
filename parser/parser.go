@@ -39,15 +39,26 @@ func groupIntoLines(items []string) [][]string {
 	return lines
 }
 
+// sectionAliases maps variant section names found in older PDFs to the
+// canonical name used in knownSections.
+var sectionAliases = map[string]string{
+	"Terminations": "Resolutions",
+}
+
 // matchSectionName checks if a line represents a known section name.
 // Section names may be split across multiple items on the same line
 // (e.g., ["Clearance", "Percent"] for "Clearance Percent").
+// Aliases (e.g., "Terminations" → "Resolutions") are resolved to the
+// canonical name.
 func matchSectionName(line []string) string {
 	joined := strings.Join(line, " ")
 	for _, name := range knownSections {
 		if joined == name {
 			return name
 		}
+	}
+	if canonical, ok := sectionAliases[joined]; ok {
+		return canonical
 	}
 	return ""
 }
@@ -224,8 +235,12 @@ func ParsePage(items []string) (MunicipalityStats, error) {
 			return RowData{}, fmt.Errorf("section %q: reading data row: %w", sectionName, err)
 		}
 		line = mergeCommaSplitNumbers(line, 10)
-		if len(line) < 10 {
-			return RowData{}, fmt.Errorf("section %q: data row has %d items (need 10): %v", sectionName, len(line), line)
+		if len(line) < 1 {
+			return RowData{}, fmt.Errorf("section %q: empty data row", sectionName)
+		}
+		// Pad short rows (e.g., statewide summary pages with fewer columns).
+		for len(line) < 10 {
+			line = append(line, "- -")
 		}
 		if len(line) > 10 {
 			// Even after merge, too many items. Take first 10 and continue.
