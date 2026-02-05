@@ -75,7 +75,7 @@ func parseSinglePDF(inputPath, jsonOut, csvOut string) {
 		csvOut = filepath.Join(dir, base+".csv")
 	}
 
-	streams, err := parser.ExtractContentStreams(inputPath)
+	pages, err := parser.ExtractContentStreams(inputPath)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s: error extracting PDF streams: %v\n", filepath.Base(inputPath), err)
 		return
@@ -84,8 +84,11 @@ func parseSinglePDF(inputPath, jsonOut, csvOut string) {
 	var results []parser.MunicipalityStats
 	var errors []string
 
-	for i, stream := range streams {
-		items := parser.ExtractTextItems(stream)
+	for i, page := range pages {
+		items := parser.ExtractTextItems(page)
+		if !parser.ContainsFilings(items) {
+			continue
+		}
 		stats, err := parser.ParsePage(items)
 		if err != nil {
 			errors = append(errors, fmt.Sprintf("page %d: %v", i+1, err))
@@ -113,7 +116,7 @@ func parseSinglePDF(inputPath, jsonOut, csvOut string) {
 
 	// Summary.
 	fmt.Fprintf(os.Stderr, "%s: %d pages, %d successful, %d errors → %s\n",
-		filepath.Base(inputPath), len(streams), len(results), len(errors), filepath.Base(jsonOut))
+		filepath.Base(inputPath), len(pages), len(results), len(errors), filepath.Base(jsonOut))
 	for _, e := range errors {
 		fmt.Fprintf(os.Stderr, "  %s\n", e)
 	}

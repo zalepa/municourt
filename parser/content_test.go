@@ -11,7 +11,7 @@ func TestExtractTextItems_TJKerning(t *testing.T) {
 [(8)0(8)-4704.6(2)0(3)]TJ
 ET`)
 
-	items := ExtractTextItems(stream)
+	items := ExtractTextItems(PageData{Content: stream})
 
 	// Filter out empty line-break markers.
 	var nonEmpty []string
@@ -37,7 +37,7 @@ func TestExtractTextItems_Tj(t *testing.T) {
 (Hello World)Tj
 ET`)
 
-	items := ExtractTextItems(stream)
+	items := ExtractTextItems(PageData{Content: stream})
 
 	var nonEmpty []string
 	for _, s := range items {
@@ -61,7 +61,7 @@ func TestExtractTextItems_TDLineBreaks(t *testing.T) {
 (Line2)Tj
 ET`)
 
-	items := ExtractTextItems(stream)
+	items := ExtractTextItems(PageData{Content: stream})
 
 	// Should have: "", "Line1", "", "Line2" (with line-break markers).
 	var foundLine1, foundLine2 bool
@@ -93,7 +93,7 @@ func TestExtractTextItems_SmallKerningConcatenates(t *testing.T) {
 [(H)-50(e)-30(l)(l)(o)]TJ
 ET`)
 
-	items := ExtractTextItems(stream)
+	items := ExtractTextItems(PageData{Content: stream})
 
 	var nonEmpty []string
 	for _, s := range items {
@@ -123,7 +123,7 @@ func TestExtractTextItems_MixedTjAndTJ(t *testing.T) {
 [(D.P. &)-3012.9(Other)-2811.9(Criminal)]TJ
 ET`)
 
-	items := ExtractTextItems(stream)
+	items := ExtractTextItems(PageData{Content: stream})
 
 	var nonEmpty []string
 	for _, s := range items {
@@ -155,7 +155,7 @@ func TestTokenizeEscapedParens(t *testing.T) {
 (\(moving\))Tj
 ET`)
 
-	items := ExtractTextItems(stream)
+	items := ExtractTextItems(PageData{Content: stream})
 
 	var nonEmpty []string
 	for _, s := range items {

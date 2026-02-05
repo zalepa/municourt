@@ -10,10 +10,26 @@ import (
 	"github.com/pdfcpu/pdfcpu/pkg/pdfcpu/types"
 )
 
+// PageData holds the extracted content stream and font CMap data for a single page.
+type PageData struct {
+	Content   []byte
+	FontCMaps map[string]CMap // font name (e.g. "TT1") → CMap
+}
+
+// ContainsFilings checks whether the extracted text items contain "Filings",
+// indicating a data page rather than a cover page.
+func ContainsFilings(items []string) bool {
+	for _, item := range items {
+		if item == "Filings" {
+			return true
+		}
+	}
+	return false
+}
+
 // ExtractContentStreams opens a PDF file and returns the decompressed content
-// stream bytes for each page. Pages whose content stream does not contain
-// "Filings" (e.g. cover pages) are skipped.
-func ExtractContentStreams(path string) ([][]byte, error) {
+// stream bytes and font CMap data for each page.
+func ExtractContentStreams(path string) ([]PageData, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, fmt.Errorf("open pdf: %w", err)
@@ -33,7 +49,7 @@ func ExtractContentStreams(path string) ([][]byte, error) {
 		return nil, fmt.Errorf("page count: %w", err)
 	}
 
-	var result [][]byte
+	var result []PageData
 	for i := 1; i <= ctx.PageCount; i++ {
 		pageDict, _, _, err := ctx.PageDict(i, false)
 		if err != nil {
@@ -50,15 +66,81 @@ func ExtractContentStreams(path string) ([][]byte, error) {
 			return nil, fmt.Errorf("page %d content stream: %w", i, err)
 		}
 
-		// Skip pages that don't have table data (e.g. cover pages).
-		if !bytes.Contains(streamData, []byte("Filings")) {
-			continue
-		}
+		fontCMaps := extractFontCMaps(ctx, pageDict)
 
-		result = append(result, streamData)
+		result = append(result, PageData{
+			Content:   streamData,
+			FontCMaps: fontCMaps,
+		})
 	}
 
 	return result, nil
+}
+
+// extractFontCMaps extracts ToUnicode CMaps from each font in the page's
+// resource dictionary.
+func extractFontCMaps(ctx *model.Context, pageDict types.Dict) map[string]CMap {
+	cmaps := make(map[string]CMap)
+
+	resourcesObj, found := pageDict.Find("Resources")
+	if !found {
+		return cmaps
+	}
+	resourcesObj, err := ctx.Dereference(resourcesObj)
+	if err != nil {
+		return cmaps
+	}
+	resources, ok := resourcesObj.(types.Dict)
+	if !ok {
+		return cmaps
+	}
+
+	fontObj, found := resources.Find("Font")
+	if !found {
+		return cmaps
+	}
+	fontObj, err = ctx.Dereference(fontObj)
+	if err != nil {
+		return cmaps
+	}
+	fontDict, ok := fontObj.(types.Dict)
+	if !ok {
+		return cmaps
+	}
+
+	for fontName, fontRef := range fontDict {
+		fontEntry, err := ctx.Dereference(fontRef)
+		if err != nil {
+			continue
+		}
+		fontEntryDict, ok := fontEntry.(types.Dict)
+		if !ok {
+			continue
+		}
+
+		tounicodeObj, found := fontEntryDict.Find("ToUnicode")
+		if !found {
+			continue
+		}
+		tounicodeObj, err = ctx.Dereference(tounicodeObj)
+		if err != nil {
+			continue
+		}
+		sd, ok := tounicodeObj.(types.StreamDict)
+		if !ok {
+			continue
+		}
+		if err := sd.Decode(); err != nil {
+			continue
+		}
+
+		cmap := ParseCMap(sd.Content)
+		if len(cmap) > 0 {
+			cmaps[fontName] = cmap
+		}
+	}
+
+	return cmaps
 }
 
 // resolveContentStream dereferences and decompresses a Contents entry, which

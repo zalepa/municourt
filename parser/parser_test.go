@@ -133,15 +133,15 @@ func TestLooksLikeCommaSplit(t *testing.T) {
 }
 
 func TestParsePagePDF(t *testing.T) {
-	streams, err := ExtractContentStreams("testdata/page.pdf")
+	pages, err := ExtractContentStreams("testdata/page.pdf")
 	if err != nil {
 		t.Fatalf("ExtractContentStreams: %v", err)
 	}
-	if len(streams) != 1 {
-		t.Fatalf("expected 1 stream, got %d", len(streams))
+	if len(pages) != 1 {
+		t.Fatalf("expected 1 page, got %d", len(pages))
 	}
 
-	items := ExtractTextItems(streams[0])
+	items := ExtractTextItems(pages[0])
 	stats, err := ParsePage(items)
 	if err != nil {
 		t.Fatalf("ParsePage: %v", err)
@@ -216,12 +216,17 @@ func TestParsePagePDF(t *testing.T) {
 }
 
 func TestCoverPageSkipped(t *testing.T) {
-	streams, err := ExtractContentStreams("testdata/cover.pdf")
+	pages, err := ExtractContentStreams("testdata/cover.pdf")
 	if err != nil {
 		t.Fatalf("ExtractContentStreams: %v", err)
 	}
-	if len(streams) != 0 {
-		t.Errorf("expected 0 data streams from cover page, got %d", len(streams))
+	// The cover page is now returned (no longer filtered in ExtractContentStreams),
+	// but ContainsFilings should correctly identify it as a non-data page.
+	for i, page := range pages {
+		items := ExtractTextItems(page)
+		if ContainsFilings(items) {
+			t.Errorf("page %d: expected cover page to not contain Filings", i)
+		}
 	}
 }
 

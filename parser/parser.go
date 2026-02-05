@@ -48,17 +48,23 @@ var sectionAliases = map[string]string{
 // matchSectionName checks if a line represents a known section name.
 // Section names may be split across multiple items on the same line
 // (e.g., ["Clearance", "Percent"] for "Clearance Percent").
+// Comparison ignores spaces so that kerning-induced splits (e.g.,
+// "F" + "ilings" for "Filings") don't cause mismatches.
 // Aliases (e.g., "Terminations" → "Resolutions") are resolved to the
 // canonical name.
 func matchSectionName(line []string) string {
 	joined := strings.Join(line, " ")
+	compact := strings.ReplaceAll(joined, " ", "")
 	for _, name := range knownSections {
-		if joined == name {
+		if compact == strings.ReplaceAll(name, " ", "") {
 			return name
 		}
 	}
-	if canonical, ok := sectionAliases[joined]; ok {
-		return canonical
+	compactAliasKey := compact
+	for alias, canonical := range sectionAliases {
+		if compactAliasKey == strings.ReplaceAll(alias, " ", "") {
+			return canonical
+		}
 	}
 	return ""
 }

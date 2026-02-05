@@ -13,11 +13,12 @@ const kerningThreshold = 500
 // ExtractTextItems parses a PDF content stream and returns an ordered list of
 // text strings. Empty strings ("") are inserted as line-break markers whenever
 // a TD/Td operator moves to a new line (non-zero y offset).
-func ExtractTextItems(stream []byte) []string {
-	tokens := tokenize(string(stream))
+func ExtractTextItems(page PageData) []string {
+	tokens := tokenize(string(page.Content))
 	var items []string
-	var stack []token   // operand stack
-	var tc float64      // current Tc (character spacing) in text space units
+	var stack []token  // operand stack
+	var tc float64     // current Tc (character spacing) in text space units
+	var curFont string // current font name from Tf operator
 
 	for i := 0; i < len(tokens); i++ {
 		t := tokens[i]
@@ -39,6 +40,16 @@ func ExtractTextItems(stream []byte) []string {
 						} else {
 							items = append(items, s.value)
 						}
+					} else if s.kind == tokHexString {
+						decoded := decodeHexToken(s.value, curFont, page.FontCMaps)
+						tcThousandths := tc * 1000
+						if math.Abs(tcThousandths) > kerningThreshold {
+							for _, ch := range decoded {
+								items = append(items, string(ch))
+							}
+						} else if decoded != "" {
+							items = append(items, decoded)
+						}
 					}
 				}
 				stack = stack[:0]
@@ -48,7 +59,7 @@ func ExtractTextItems(stream []byte) []string {
 				if len(stack) > 0 {
 					a := stack[len(stack)-1]
 					if a.kind == tokArray {
-						items = append(items, processTJArray(a.children, tc*1000)...)
+						items = append(items, processTJArray(a.children, tc*1000, curFont, page.FontCMaps)...)
 					}
 				}
 				stack = stack[:0]
@@ -80,6 +91,16 @@ func ExtractTextItems(stream []byte) []string {
 				}
 				stack = stack[:0]
 
+			case "Tf":
+				// Font selection: /FontName size Tf
+				if len(stack) >= 2 {
+					nameToken := stack[len(stack)-2]
+					if nameToken.kind == tokName {
+						curFont = nameToken.value
+					}
+				}
+				stack = stack[:0]
+
 			default:
 				// Other operators: clear the operand stack.
 				stack = stack[:0]
@@ -91,6 +112,18 @@ func ExtractTextItems(stream []byte) []string {
 	}
 
 	return items
+}
+
+// decodeHexToken decodes a hex string token using the CMap for the given font.
+func decodeHexToken(hexStr, fontName string, fontCMaps map[string]CMap) string {
+	if fontCMaps == nil {
+		return ""
+	}
+	cmap, ok := fontCMaps[fontName]
+	if !ok {
+		return ""
+	}
+	return DecodeHexString(hexStr, cmap)
 }
 
 // processTJArray takes the children of a TJ array and returns text items,
@@ -107,13 +140,16 @@ func ExtractTextItems(stream []byte) []string {
 //   - Across a TJ number: gap = Tc*1000 - TJ_value
 //
 // If abs(gap) > kerningThreshold, a column boundary is inserted.
-func processTJArray(children []token, tcThousandths float64) []string {
+func processTJArray(children []token, tcThousandths float64, fontName string, fontCMaps map[string]CMap) []string {
+	// Resolve hex strings into regular strings before processing.
+	resolved := resolveHexChildren(children, fontName, fontCMaps)
+
 	var items []string
 	var cur strings.Builder
 	nextGap := 0.0
 	isFirst := true
 
-	for _, c := range children {
+	for _, c := range resolved {
 		switch c.kind {
 		case tokString:
 			for _, ch := range c.value {
@@ -144,14 +180,41 @@ func processTJArray(children []token, tcThousandths float64) []string {
 	return items
 }
 
+// resolveHexChildren converts tokHexString children to tokString using CMaps.
+func resolveHexChildren(children []token, fontName string, fontCMaps map[string]CMap) []token {
+	hasHex := false
+	for _, c := range children {
+		if c.kind == tokHexString {
+			hasHex = true
+			break
+		}
+	}
+	if !hasHex {
+		return children
+	}
+
+	resolved := make([]token, len(children))
+	for i, c := range children {
+		if c.kind == tokHexString {
+			decoded := decodeHexToken(c.value, fontName, fontCMaps)
+			resolved[i] = token{kind: tokString, value: decoded}
+		} else {
+			resolved[i] = c
+		}
+	}
+	return resolved
+}
+
 // Token types for the PDF content stream tokenizer.
 type tokenKind int
 
 const (
-	tokString   tokenKind = iota // (text)
-	tokNumber                    // 123, -45.6
-	tokOperator                  // BT, Tj, TJ, TD, etc.
-	tokArray                     // [...] — children stored in token.children
+	tokString    tokenKind = iota // (text)
+	tokNumber                     // 123, -45.6
+	tokOperator                   // BT, Tj, TJ, TD, etc.
+	tokArray                      // [...] — children stored in token.children
+	tokHexString                  // <hex> — hex-encoded string
+	tokName                       // /Name — PDF name object
 )
 
 type token struct {
@@ -212,30 +275,48 @@ func tokenize(s string) []token {
 			continue
 		}
 
-		// Operator or name.
+		// Name object (e.g. /TT1).
 		if ch == '/' {
-			// Name object — skip it (we don't need font names etc. as tokens).
 			i++
+			start := i
 			for i < n && s[i] != ' ' && s[i] != '\t' && s[i] != '\r' && s[i] != '\n' &&
 				s[i] != '/' && s[i] != '(' && s[i] != '[' && s[i] != '<' {
 				i++
 			}
+			tokens = append(tokens, token{kind: tokName, value: s[start:i]})
 			continue
 		}
 
-		// Hex string <...>
+		// Hex string <...> or dict marker <<...>>
 		if ch == '<' {
-			// Skip hex strings and dict markers.
-			i++
-			depth := 1
-			for i < n && depth > 0 {
-				if s[i] == '<' {
-					depth++
-				} else if s[i] == '>' {
-					depth--
+			if i+1 < n && s[i+1] == '<' {
+				// Dictionary marker << — skip to >>
+				i += 2
+				depth := 1
+				for i < n && depth > 0 {
+					if i+1 < n && s[i] == '<' && s[i+1] == '<' {
+						depth++
+						i += 2
+					} else if i+1 < n && s[i] == '>' && s[i+1] == '>' {
+						depth--
+						i += 2
+					} else {
+						i++
+					}
 				}
+				continue
+			}
+			// Single hex string <...>
+			i++ // skip '<'
+			start := i
+			for i < n && s[i] != '>' {
 				i++
 			}
+			hexContent := s[start:i]
+			if i < n {
+				i++ // skip '>'
+			}
+			tokens = append(tokens, token{kind: tokHexString, value: hexContent})
 			continue
 		}
 
@@ -337,6 +418,21 @@ func readArray(s string, pos int) (token, int) {
 			str, end := readString(s, i)
 			children = append(children, token{kind: tokString, value: str})
 			i = end
+			continue
+		}
+
+		// Hex string inside array.
+		if ch == '<' {
+			i++ // skip '<'
+			start := i
+			for i < n && s[i] != '>' {
+				i++
+			}
+			hexContent := s[start:i]
+			if i < n {
+				i++ // skip '>'
+			}
+			children = append(children, token{kind: tokHexString, value: hexContent})
 			continue
 		}
 
