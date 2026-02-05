@@ -15,8 +15,5 @@ registry:
   password:
     - KAMAL_REGISTRY_PASSWORD
 
-volumes:
-  - "municourt_data:/data"
-
 builder:
   arch: amd64

@@ -61,8 +61,7 @@ func Web(args []string) {
 		os.Exit(1)
 	}
 	if len(records) == 0 {
-		fmt.Fprintf(os.Stderr, "no JSON files found in %s\n", *dir)
-		os.Exit(1)
+		fmt.Fprintf(os.Stderr, "warning: no JSON files found in %s, starting with empty data\n", *dir)
 	}
 
 	meta := buildMetadata(records)
