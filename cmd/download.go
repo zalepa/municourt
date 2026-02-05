@@ -31,7 +31,14 @@ func Download(args []string) {
 	const pageURL = "https://www.njcourts.gov/public/statistics"
 	fmt.Fprintf(os.Stderr, "Fetching %s\n", pageURL)
 
-	resp, err := http.Get(pageURL)
+	req, err := http.NewRequest("GET", pageURL, nil)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error creating request: %v\n", err)
+		os.Exit(1)
+	}
+	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; municourt/1.0)")
+
+	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error fetching statistics page: %v\n", err)
 		os.Exit(1)
@@ -85,7 +92,13 @@ func Download(args []string) {
 }
 
 func downloadFile(url, dest string) error {
-	resp, err := http.Get(url)
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return err
+	}
+	req.Header.Set("User-Agent", "Mozilla/5.0 (compatible; municourt/1.0)")
+
+	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return err
 	}
