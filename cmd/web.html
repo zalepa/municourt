@@ -458,10 +458,10 @@ function updateAddMunicipalities() {
   populateSelect(selAddMuni, opts);
 }
 
-function entityKey(level, county, municipality) {
-  if (level === 'state') return 'state::';
-  if (level === 'county') return 'county:' + county + ':';
-  return 'municipality:' + county + ':' + municipality;
+function entityKey(level, county, municipality, metric, type) {
+  if (level === 'state') return 'state:::' + metric + ':' + type;
+  if (level === 'county') return 'county:' + county + '::' + metric + ':' + type;
+  return 'municipality:' + county + ':' + municipality + ':' + metric + ':' + type;
 }
 
 function entityLabel(level, county, municipality) {
@@ -470,11 +470,11 @@ function entityLabel(level, county, municipality) {
   return municipality + ' (' + county + ')';
 }
 
-function addEntity(level, county, municipality) {
-  const key = entityKey(level, county, municipality);
+function addEntity(level, county, municipality, metric, type) {
+  const key = entityKey(level, county, municipality, metric, type);
   if (entities.some(e => e.key === key)) return;
   const label = entityLabel(level, county, municipality);
-  entities.push({ level, county: county || '', municipality: municipality || '', label, key });
+  entities.push({ level, county: county || '', municipality: municipality || '', metric, type, label, key });
   renderChips();
   fetchAndRender();
 }
@@ -493,45 +493,63 @@ function clearAll() {
 
 function updateURL() {
   const params = new URLSearchParams();
-  params.set('metric', selMetric.value);
-  params.set('type', selType.value);
   for (const e of entities) params.append('e', e.key);
   history.replaceState(null, '', '?' + params.toString());
 }
 
 function loadFromURL() {
   const params = new URLSearchParams(window.location.search);
-  const metric = params.get('metric');
-  const type = params.get('type');
   const keys = params.getAll('e');
 
-  if (metric) selMetric.value = metric;
-  if (type) selType.value = type;
+  // Backwards compat: old format stored global metric/type params with 3-part keys
+  const globalMetric = params.get('metric') || selMetric.value;
+  const globalType = params.get('type') || selType.value;
 
   if (keys.length > 0) {
     for (const key of keys) {
-      const [level, county, municipality] = key.split(':');
+      const parts = key.split(':');
+      const level = parts[0];
       if (!level) continue;
-      const label = entityLabel(level, county || '', municipality || '');
-      if (!entities.some(e => e.key === key)) {
-        entities.push({ level, county: county || '', municipality: municipality || '', label, key });
+      const county = parts[1] || '';
+      const municipality = parts[2] || '';
+      // New format: 5 parts; old format: 3 parts (use global defaults)
+      const metric = parts[3] || globalMetric;
+      const type = parts[4] || globalType;
+      const fullKey = entityKey(level, county, municipality, metric, type);
+      const label = entityLabel(level, county, municipality);
+      if (!entities.some(e => e.key === fullKey)) {
+        entities.push({ level, county, municipality, metric, type, label, key: fullKey });
       }
+    }
+    // Set dropdowns to last entity's metric/type for next-add convenience
+    if (entities.length > 0) {
+      selMetric.value = entities[entities.length - 1].metric;
+      selType.value = entities[entities.length - 1].type;
     }
     renderChips();
     fetchAndRender();
   } else {
-    addEntity('state', '', '');
+    addEntity('state', '', '', selMetric.value, selType.value);
   }
 }
 
 function renderChips() {
   chipsEl.innerHTML = '';
+  const metrics = new Set(entities.map(e => e.metric));
+  const types = new Set(entities.map(e => e.type));
+  const showMetric = metrics.size > 1;
+  const showType = types.size > 1;
   for (const e of entities) {
     const chip = document.createElement('span');
     chip.className = 'chip';
+    let chipLabel = e.label;
+    const parts = [];
+    if (showMetric) parts.push(metricLabel(e.metric));
+    if (showType) parts.push(typeLabel(e.type));
+    if (parts.length) chipLabel += ' \u00b7 ' + parts.join(' \u00b7 ');
     chip.innerHTML = '<span class="label"></span><span class="remove" data-key="' +
       e.key.replace(/"/g, '&quot;') + '">\u00d7</span>';
-    chip.querySelector('.label').textContent = e.label;
+    chip.querySelector('.label').textContent = chipLabel;
     chipsEl.appendChild(chip);
   }
   if (entities.length > 0) {
@@ -550,21 +568,23 @@ chipsEl.addEventListener('click', (ev) => {
 
 function handleAdd() {
   const level = selAddLevel.value;
+  const metric = selMetric.value;
+  const type = selType.value;
   if (level === 'state') {
-    addEntity('state', '', '');
+    addEntity('state', '', '', metric, type);
   } else if (level === 'county') {
     if (selAddCounty.value === '__all__') {
-      for (const c of meta.counties) addEntity('county', c, '');
+      for (const c of meta.counties) addEntity('county', c, '', metric, type);
     } else {
-      addEntity('county', selAddCounty.value, '');
+      addEntity('county', selAddCounty.value, '', metric, type);
     }
   } else {
     const county = selAddCounty.value;
     if (selAddMuni.value === '__all__') {
       const munis = meta.municipalities[county] || [];
-      for (const m of munis) addEntity('municipality', county, m);
+      for (const m of munis) addEntity('municipality', county, m, metric, type);
     } else {
-      addEntity('municipality', county, selAddMuni.value);
+      addEntity('municipality', county, selAddMuni.value, metric, type);
     }
   }
 }
@@ -584,12 +604,14 @@ async function fetchAndRender() {
     return;
   }
 
-  const metric = selMetric.value;
-  const type = selType.value;
+  const metrics = new Set(entities.map(e => e.metric));
+  const types = new Set(entities.map(e => e.type));
+  const showMetric = metrics.size > 1;
+  const showType = types.size > 1;
 
   const fetches = entities.map(e => {
     const params = new URLSearchParams({
-      level: e.level, metric, type,
+      level: e.level, metric: e.metric, type: e.type,
       county: e.county, municipality: e.municipality,
     });
     return fetch('/api/series?' + params).then(r => r.json());
@@ -620,12 +642,24 @@ async function fetchAndRender() {
         const idx = dateIndex.get(r.dates[j]);
         if (idx !== undefined) values[idx] = s.values[j];
       }
-      const name = r.series.length === 1 ? e.label : s.name;
+      let name = r.series.length === 1 ? e.label : s.name;
+      const parts = [];
+      if (showMetric) parts.push(metricLabel(e.metric));
+      if (showType) parts.push(typeLabel(e.type));
+      if (parts.length) name += ' \u00b7 ' + parts.join(' \u00b7 ');
       allSeries.push({ name, values });
     }
   }
 
-  const title = metricLabel(metric) + ' \u2014 ' + typeLabel(type);
+  // Chart title: show shared dimensions, omit mixed ones
+  let title = '';
+  if (!showMetric && !showType) {
+    title = metricLabel([...metrics][0]) + ' \u2014 ' + typeLabel([...types][0]);
+  } else if (showMetric && !showType) {
+    title = typeLabel([...types][0]);
+  } else if (!showMetric && showType) {
+    title = metricLabel([...metrics][0]);
+  }
 
   const option = {
     color: palette,
@@ -713,9 +747,6 @@ async function init() {
     if (selAddLevel.value === 'municipality') updateAddMunicipalities();
   });
   addBtn.addEventListener('click', handleAdd);
-
-  selMetric.addEventListener('change', fetchAndRender);
-  selType.addEventListener('change', fetchAndRender);
 
   downloadBtn.addEventListener('click', () => {
     const url = chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: '#fff' });
