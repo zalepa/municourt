@@ -12,6 +12,16 @@ import (
 	"github.com/zalepa/municourt/parser"
 )
 
+// parseResult holds the output of parsing a single PDF file.
+type parseResult struct {
+	inputPath string
+	date      string // YYYY-MM extracted from filename
+	results   []parser.MunicipalityStats
+	errors    []string
+	nPages    int
+	failed    bool
+}
+
 // Parse implements the "parse" subcommand: read a PDF (or directory of PDFs),
 // extract municipal court statistics, and write JSON + CSV output files.
 func Parse(args []string) {
@@ -48,8 +58,18 @@ func Parse(args []string) {
 			fmt.Fprintf(os.Stderr, "no PDF files found in %s\n", inputPath)
 			os.Exit(1)
 		}
+
+		var parsed []parseResult
 		for _, pdf := range pdfs {
-			parseSinglePDF(pdf, "", "")
+			parsed = append(parsed, parsePDFFile(pdf))
+		}
+
+		deduplicateMunicipalities(parsed)
+
+		for _, r := range parsed {
+			if !r.failed {
+				writeResults(r, "", "")
+			}
 		}
 	} else {
 		// Default output paths: same directory and base name as input.
@@ -61,24 +81,24 @@ func Parse(args []string) {
 		if *csvOut == "" {
 			*csvOut = filepath.Join(dir, base+".csv")
 		}
-		parseSinglePDF(inputPath, *jsonOut, *csvOut)
+		r := parsePDFFile(inputPath)
+		if !r.failed {
+			writeResults(r, *jsonOut, *csvOut)
+		}
 	}
 }
 
-func parseSinglePDF(inputPath, jsonOut, csvOut string) {
-	dir := filepath.Dir(inputPath)
-	base := strings.TrimSuffix(filepath.Base(inputPath), filepath.Ext(inputPath))
-	if jsonOut == "" {
-		jsonOut = filepath.Join(dir, base+".json")
-	}
-	if csvOut == "" {
-		csvOut = filepath.Join(dir, base+".csv")
+func parsePDFFile(inputPath string) parseResult {
+	baseName := filepath.Base(inputPath)
+	date := ""
+	if m := datePattern.FindStringSubmatch(baseName); m != nil {
+		date = m[1] + "-" + m[2]
 	}
 
 	pages, err := parser.ExtractContentStreams(inputPath)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s: error extracting PDF streams: %v\n", filepath.Base(inputPath), err)
-		return
+		fmt.Fprintf(os.Stderr, "%s: error extracting PDF streams: %v\n", baseName, err)
+		return parseResult{inputPath: inputPath, date: date, failed: true}
 	}
 
 	var results []parser.MunicipalityStats
@@ -97,27 +117,46 @@ func parseSinglePDF(inputPath, jsonOut, csvOut string) {
 		results = append(results, stats)
 	}
 
+	return parseResult{
+		inputPath: inputPath,
+		date:      date,
+		results:   results,
+		errors:    errors,
+		nPages:    len(pages),
+	}
+}
+
+func writeResults(r parseResult, jsonOut, csvOut string) {
+	dir := filepath.Dir(r.inputPath)
+	base := strings.TrimSuffix(filepath.Base(r.inputPath), filepath.Ext(r.inputPath))
+	if jsonOut == "" {
+		jsonOut = filepath.Join(dir, base+".json")
+	}
+	if csvOut == "" {
+		csvOut = filepath.Join(dir, base+".csv")
+	}
+
 	// Write JSON.
-	jsonData, err := json.MarshalIndent(results, "", "  ")
+	jsonData, err := json.MarshalIndent(r.results, "", "  ")
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s: error marshaling JSON: %v\n", filepath.Base(inputPath), err)
+		fmt.Fprintf(os.Stderr, "%s: error marshaling JSON: %v\n", filepath.Base(r.inputPath), err)
 		return
 	}
 	if err := os.WriteFile(jsonOut, jsonData, 0644); err != nil {
-		fmt.Fprintf(os.Stderr, "%s: error writing JSON: %v\n", filepath.Base(inputPath), err)
+		fmt.Fprintf(os.Stderr, "%s: error writing JSON: %v\n", filepath.Base(r.inputPath), err)
 		return
 	}
 
 	// Write CSV.
-	if err := writeCSV(csvOut, results); err != nil {
-		fmt.Fprintf(os.Stderr, "%s: error writing CSV: %v\n", filepath.Base(inputPath), err)
+	if err := writeCSV(csvOut, r.results); err != nil {
+		fmt.Fprintf(os.Stderr, "%s: error writing CSV: %v\n", filepath.Base(r.inputPath), err)
 		return
 	}
 
 	// Summary.
 	fmt.Fprintf(os.Stderr, "%s: %d pages, %d successful, %d errors → %s\n",
-		filepath.Base(inputPath), len(pages), len(results), len(errors), filepath.Base(jsonOut))
-	for _, e := range errors {
+		filepath.Base(r.inputPath), r.nPages, len(r.results), len(r.errors), filepath.Base(jsonOut))
+	for _, e := range r.errors {
 		fmt.Fprintf(os.Stderr, "  %s\n", e)
 	}
 }

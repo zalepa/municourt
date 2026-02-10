@@ -1,7 +1,7 @@
 [
   {
     "county": "ATLANTIC",
-    "municipality": "ABSECON CITY",
+    "municipality": "ABSECON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -547,7 +547,7 @@
   },
   {
     "county": "ATLANTIC",
-    "municipality": "BRIGANTINE CITY",
+    "municipality": "BRIGANTINE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -2731,7 +2731,7 @@
   },
   {
     "county": "ATLANTIC",
-    "municipality": "HAMMONTON TOWN",
+    "municipality": "HAMMONTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -3550,7 +3550,7 @@
   },
   {
     "county": "ATLANTIC",
-    "municipality": "MARGATE CITY",
+    "municipality": "MARGATE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -4096,7 +4096,7 @@
   },
   {
     "county": "ATLANTIC",
-    "municipality": "NORTHFIELD CITY",
+    "municipality": "NORTHFIELD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -4369,7 +4369,7 @@
   },
   {
     "county": "ATLANTIC",
-    "municipality": "PLEASANTVILLE CITY",
+    "municipality": "PLEASANTVILLE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -6553,7 +6553,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "BERGENFIELD BORO",
+    "municipality": "BERGENFIELD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -11740,7 +11740,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "GLEN ROCK BORO",
+    "municipality": "GLEN ROCK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -12013,7 +12013,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "HACKENSACK CITY",
+    "municipality": "HACKENSACK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -12559,7 +12559,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "HASBROUCK HGTS BORO",
+    "municipality": "HASBROUCK HGTS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -13651,7 +13651,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "LEONIA BORO",
+    "municipality": "LEONIA",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -16381,7 +16381,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "NORTH ARLINGTON BORO",
+    "municipality": "NORTH ARLINGTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -18292,7 +18292,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "PALISADES PARK BORO",
+    "municipality": "PALISADES PARK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -21295,7 +21295,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "RUTHERFORD BORO",
+    "municipality": "RUTHERFORD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -21841,7 +21841,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "SADDLE RIVER BORO",
+    "municipality": "SADDLE RIVER",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -22114,7 +22114,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "SOUTH HACKENSACK TWP",
+    "municipality": "SOUTH HACKENSACK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -22660,7 +22660,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "TENAFLY TWP",
+    "municipality": "TENAFLY BORO",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -23206,7 +23206,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "UPPER SADDLE RIVER BORO",
+    "municipality": "UPPER SADDLE RIVER",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -24844,7 +24844,7 @@
   },
   {
     "county": "BERGEN",
-    "municipality": "WOODCLIFF LAKE BORO",
+    "municipality": "WOODCLIFF LAKE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -27028,7 +27028,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "CHESTERFIELD TWP",
+    "municipality": "CHESTERFIELD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -27301,7 +27301,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "CINNAMINSON TWP",
+    "municipality": "CINNAMINSON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -27847,7 +27847,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "DELRAN TWP",
+    "municipality": "DELRAN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -28393,7 +28393,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "EDGEWATER PARK TWP",
+    "municipality": "EDGEWATER PARK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -28939,7 +28939,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "FIELDSBORO BORO",
+    "municipality": "FIELDSBORO",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -30577,7 +30577,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "MEDFORD LAKES BORO",
+    "municipality": "MEDFORD LAKES",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -31396,7 +31396,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "MT. HOLLY TWP",
+    "municipality": "MT. HOLLY",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -31669,7 +31669,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "MT. LAUREL TWP",
+    "municipality": "MT. LAUREL",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -31942,7 +31942,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "NEW HANOVER",
+    "municipality": "NEW HANOVER TWP",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -32215,7 +32215,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "NORTH HANOVER TWP",
+    "municipality": "NORTH HANOVER",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -34126,7 +34126,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "SOUTHAMPTON TWP",
+    "municipality": "SOUTHAMPTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -36037,7 +36037,7 @@
   },
   {
     "county": "BURLINGTON",
-    "municipality": "WRIGHTSTOWN",
+    "municipality": "WRIGHTSTOWN BORO",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -36856,7 +36856,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "BARRINGTON BORO",
+    "municipality": "BARRINGTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -37129,7 +37129,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "BELLMAWR BORO",
+    "municipality": "BELLMAWR",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -37948,7 +37948,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "BROOKLAWN BORO",
+    "municipality": "BROOKLAWN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -38767,7 +38767,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "CHESILHURST BORO",
+    "municipality": "CHESILHURST",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -39040,7 +39040,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "CLEMENTON BORO",
+    "municipality": "CLEMENTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -40405,7 +40405,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "HADDON HEIGHTS BORO",
+    "municipality": "HADDON HEIGHTS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -40951,7 +40951,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "HADDONFIELD BORO",
+    "municipality": "HADDONFIELD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -41497,7 +41497,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "LAUREL SPRINGS BORO",
+    "municipality": "LAUREL SPRINGS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -42043,7 +42043,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "LINDENWOLD BORO",
+    "municipality": "LINDENWOLD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -43408,7 +43408,7 @@
   },
   {
     "county": "CAMDEN",
-    "municipality": "PENNSAUKEN BORO",
+    "municipality": "PENNSAUKEN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -46138,7 +46138,7 @@
   },
   {
     "county": "CAPE MAY",
-    "municipality": "AVALON BORO",
+    "municipality": "AVALON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -47776,7 +47776,7 @@
   },
   {
     "county": "CAPE MAY",
-    "municipality": "NORTH WILDWOOD CITY",
+    "municipality": "NORTH WILDWOOD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -48595,7 +48595,7 @@
   },
   {
     "county": "CAPE MAY",
-    "municipality": "STONE HARBOR BORO",
+    "municipality": "STONE HARBOR",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -49687,7 +49687,7 @@
   },
   {
     "county": "CAPE MAY",
-    "municipality": "WILDWOOD CREST BORO",
+    "municipality": "WILDWOOD CREST",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -50233,7 +50233,7 @@
   },
   {
     "county": "CUMBERLAND",
-    "municipality": "BRIDGETON CITY",
+    "municipality": "BRIDGETON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -52417,7 +52417,7 @@
   },
   {
     "county": "CUMBERLAND",
-    "municipality": "MAURICE RIVER TWP",
+    "municipality": "MAURICE RIVER",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -52690,7 +52690,7 @@
   },
   {
     "county": "CUMBERLAND",
-    "municipality": "MILLVILLE CITY",
+    "municipality": "MILLVILLE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -53236,7 +53236,7 @@
   },
   {
     "county": "CUMBERLAND",
-    "municipality": "UPPER DEERFIELD TWP",
+    "municipality": "UPPER DEERFIELD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -53782,7 +53782,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "BELLEVILLE TOWN",
+    "municipality": "BELLEVILLE TWP",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -54055,7 +54055,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "BLOOMFIELD TOWN",
+    "municipality": "BLOOMFIELD TWP",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -54601,7 +54601,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "CEDAR GROVE TWP",
+    "municipality": "CEDAR GROVE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -54874,7 +54874,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "EAST ORANGE CITY",
+    "municipality": "EAST ORANGE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -55966,7 +55966,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "IRVINGTON TOWN",
+    "municipality": "IRVINGTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -56239,7 +56239,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "LIVINGSTON TWP",
+    "municipality": "LIVINGSTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -57331,7 +57331,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "NEWARK CITY",
+    "municipality": "NEWARK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -57604,7 +57604,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "NORTH CALDWELL BORO",
+    "municipality": "NORTH CALDWELL",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -58696,7 +58696,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "SOUTH ORANGE VILLAGE",
+    "municipality": "SOUTH ORANGE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -59242,7 +59242,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "WEST CALDWELL BORO",
+    "municipality": "WEST CALDWELL",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -59515,7 +59515,7 @@
   },
   {
     "county": "ESSEX",
-    "municipality": "WEST ORANGE TOWN",
+    "municipality": "WEST ORANGE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -61153,7 +61153,7 @@
   },
   {
     "county": "GLOUCESTER",
-    "municipality": "GLASSBORO BORO",
+    "municipality": "GLASSBORO",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -63883,7 +63883,7 @@
   },
   {
     "county": "GLOUCESTER",
-    "municipality": "SOUTH HARRISON TWP",
+    "municipality": "SOUTH HARRISON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -64156,7 +64156,7 @@
   },
   {
     "county": "GLOUCESTER",
-    "municipality": "SWEDESBORO BORO",
+    "municipality": "SWEDESBORO",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -66613,7 +66613,7 @@
   },
   {
     "county": "HUDSON",
-    "municipality": "EAST NEWARK BORO",
+    "municipality": "EAST NEWARK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -66886,7 +66886,7 @@
   },
   {
     "county": "HUDSON",
-    "municipality": "GUTTENBERG TOWN",
+    "municipality": "GUTTENBERG",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -67159,7 +67159,7 @@
   },
   {
     "county": "HUDSON",
-    "municipality": "HARRISON TOWN",
+    "municipality": "HARRISON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -68251,7 +68251,7 @@
   },
   {
     "county": "HUDSON",
-    "municipality": "KEARNY TOWN",
+    "municipality": "KEARNY",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -68524,7 +68524,7 @@
   },
   {
     "county": "HUDSON",
-    "municipality": "NORTH BERGEN TWP",
+    "municipality": "NORTH BERGEN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -69616,7 +69616,7 @@
   },
   {
     "county": "HUDSON",
-    "municipality": "WEST NEW YORK TOWN",
+    "municipality": "WEST NEW YORK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -72892,7 +72892,7 @@
   },
   {
     "county": "HUNTERDON",
-    "municipality": "STOCKTON BORO",
+    "municipality": "STOCKTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -73438,7 +73438,7 @@
   },
   {
     "county": "HUNTERDON",
-    "municipality": "WEST AMWELL TWP",
+    "municipality": "WEST AMWELL",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -73711,7 +73711,7 @@
   },
   {
     "county": "MERCER",
-    "municipality": "EAST WINDSOR TWP",
+    "municipality": "EAST WINDSOR",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -74530,7 +74530,7 @@
   },
   {
     "county": "MERCER",
-    "municipality": "HIGHTSTOWN BORO",
+    "municipality": "HIGHTSTOWN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -76441,7 +76441,7 @@
   },
   {
     "county": "MERCER",
-    "municipality": "TRENTON CITY",
+    "municipality": "TRENTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -76987,7 +76987,7 @@
   },
   {
     "county": "MERCER",
-    "municipality": "WEST WINDSOR TWP",
+    "municipality": "WEST WINDSOR",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -77260,7 +77260,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "CARTERET BORO",
+    "municipality": "CARTERET",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -78079,7 +78079,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "EAST BRUNSWICK TWP",
+    "municipality": "EAST BRUNSWICK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -79444,7 +79444,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "METUCHEN BORO",
+    "municipality": "METUCHEN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -80536,7 +80536,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "NEW BRUNSWICK CITY",
+    "municipality": "NEW BRUNSWICK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -80809,7 +80809,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "NORTH BRUNSWICK TWP",
+    "municipality": "NORTH BRUNSWICK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -82174,7 +82174,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "SAYREVILLE BORO",
+    "municipality": "SAYREVILLE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -82447,7 +82447,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "SOUTH AMBOY CITY",
+    "municipality": "SOUTH AMBOY",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -82993,7 +82993,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "SOUTH PLAINFIELD BORO",
+    "municipality": "SOUTH PLAINFIELD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -83266,7 +83266,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "SOUTH RIVER BORO",
+    "municipality": "SOUTH RIVER",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -83812,7 +83812,7 @@
   },
   {
     "county": "MIDDLESEX",
-    "municipality": "WOODBRIDGE TWP",
+    "municipality": "WOODBRIDGE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -84631,7 +84631,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "ALLENTOWN BOROUGH",
+    "municipality": "ALLENTOWN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -84904,7 +84904,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "ASBURY PARK CITY",
+    "municipality": "ASBURY PARK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -85177,7 +85177,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "ATLANTIC HIGHLANDS BORO",
+    "municipality": "ATLANTIC HIGHLANDS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -87088,7 +87088,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "EATONTOWN BORO",
+    "municipality": "EATONTOWN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -90091,7 +90091,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "KEANSBURG BORO",
+    "municipality": "KEANSBURG",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -91456,7 +91456,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "LONG BRANCH CITY",
+    "municipality": "LONG BRANCH",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -93367,7 +93367,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "MONMOUTH BEACH BORO",
+    "municipality": "MONMOUTH BEACH",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -96643,7 +96643,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "SPRING LAKE BORO",
+    "municipality": "SPRING LAKE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -97462,7 +97462,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "UNION BEACH BORO",
+    "municipality": "UNION BEACH",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -97735,7 +97735,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "UPPER FREEHOLD TWP",
+    "municipality": "UPPER FREEHOLD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -98281,7 +98281,7 @@
   },
   {
     "county": "MONMOUTH",
-    "municipality": "WEST LONG BRANCH BORO",
+    "municipality": "WEST LONG BRANCH",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -98554,7 +98554,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "BOONTON TOWN",
+    "municipality": "BOONTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -101011,7 +101011,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "EAST HANOVER TWP",
+    "municipality": "EAST HANOVER",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -101284,7 +101284,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "FLORHAM PARK BORO",
+    "municipality": "FLORHAM PARK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -101557,7 +101557,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "HANOVER TWP",
+    "municipality": "HANOVER",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -102649,7 +102649,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "LINCOLN PARK BORO",
+    "municipality": "LINCOLN PARK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -104560,7 +104560,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "MORRIS PLAINS BORO",
+    "municipality": "MORRIS PLAINS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -105106,7 +105106,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "MORRISTOWN TOWN",
+    "municipality": "MORRISTOWN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -105379,7 +105379,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "MOUNTAIN LAKES BORO",
+    "municipality": "MOUNTAIN LAKES",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -105652,7 +105652,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "MT. ARLINGTON BORO",
+    "municipality": "MT. ARLINGTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -108382,7 +108382,7 @@
   },
   {
     "county": "MORRIS",
-    "municipality": "VICTORY GARDENS BORO",
+    "municipality": "VICTORY GARDENS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -109201,7 +109201,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "BARNEGAT LIGHT BORO",
+    "municipality": "BARNEGAT LIGHT",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -110293,7 +110293,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "BEACHWOOD BORO",
+    "municipality": "BEACHWOOD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -111931,7 +111931,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "ISLAND HEIGHTS BORO",
+    "municipality": "ISLAND HEIGHTS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -113023,7 +113023,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "LAKEWOOD TWP",
+    "municipality": "LAKEWOOD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -113296,7 +113296,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "LAVALLETTE BORO",
+    "municipality": "LAVALLETTE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -114388,7 +114388,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "MANTOLOKING BORO",
+    "municipality": "MANTOLOKING",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -114661,7 +114661,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "OCEAN GATE BORO",
+    "municipality": "OCEAN GATE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -116299,7 +116299,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "SEASIDE HEIGHTS BORO",
+    "municipality": "SEASIDE HEIGHTS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -116845,7 +116845,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "SHIP BOTTOM BORO",
+    "municipality": "SHIP BOTTOM",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -117118,7 +117118,7 @@
   },
   {
     "county": "OCEAN",
-    "municipality": "SOUTH TOMS RIVER BORO",
+    "municipality": "SOUTH TOMS RIVER",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -118210,7 +118210,7 @@
   },
   {
     "county": "PASSAIC",
-    "municipality": "BLOOMINGDALE BORO",
+    "municipality": "BLOOMINGDALE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -118483,7 +118483,7 @@
   },
   {
     "county": "PASSAIC",
-    "municipality": "CLIFTON CITY",
+    "municipality": "CLIFTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -119302,7 +119302,7 @@
   },
   {
     "county": "PASSAIC",
-    "municipality": "LITTLE FALLS TWP",
+    "municipality": "LITTLE FALLS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -119575,7 +119575,7 @@
   },
   {
     "county": "PASSAIC",
-    "municipality": "NORTH HALEDON BORO",
+    "municipality": "NORTH HALEDON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -120121,7 +120121,7 @@
   },
   {
     "county": "PASSAIC",
-    "municipality": "PATERSON CITY",
+    "municipality": "PATERSON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -120394,7 +120394,7 @@
   },
   {
     "county": "PASSAIC",
-    "municipality": "POMPTON LAKES BORO",
+    "municipality": "POMPTON LAKES",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -120667,7 +120667,7 @@
   },
   {
     "county": "PASSAIC",
-    "municipality": "PROSPECT PARK BORO",
+    "municipality": "PROSPECT PARK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -123397,7 +123397,7 @@
   },
   {
     "county": "SALEM",
-    "municipality": "LOWER ALLOWAYS CREEK TWP",
+    "municipality": "LOWER ALLOWAYS CREEK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -124216,7 +124216,7 @@
   },
   {
     "county": "SALEM",
-    "municipality": "PENNS GROVE BORO",
+    "municipality": "PENNS GROVE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -125854,7 +125854,7 @@
   },
   {
     "county": "SALEM",
-    "municipality": "UPPER PITTSGROVE TWP",
+    "municipality": "UPPER PITTSGROVE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -127219,7 +127219,7 @@
   },
   {
     "county": "SOMERSET",
-    "municipality": "BOUND BROOK BORO",
+    "municipality": "BOUND BROOK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -129949,7 +129949,7 @@
   },
   {
     "county": "SOMERSET",
-    "municipality": "NORTH PLAINFIELD BORO",
+    "municipality": "NORTH PLAINFIELD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -130222,7 +130222,7 @@
   },
   {
     "county": "SOMERSET",
-    "municipality": "PEAPACK GLADSTONE BORO",
+    "municipality": "PEAPACK GLADSTONE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -131041,7 +131041,7 @@
   },
   {
     "county": "SOMERSET",
-    "municipality": "SOMERVILLE BORO",
+    "municipality": "SOMERVILLE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -131314,7 +131314,7 @@
   },
   {
     "county": "SOMERSET",
-    "municipality": "SOUTH BOUND BROOK TWP",
+    "municipality": "SOUTH BOUND BROOK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -133498,7 +133498,7 @@
   },
   {
     "county": "SUSSEX",
-    "municipality": "HAMBURG BORO",
+    "municipality": "HAMBURG",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -133771,7 +133771,7 @@
   },
   {
     "county": "SUSSEX",
-    "municipality": "HAMPTON STILLWATER TWP",
+    "municipality": "HAMPTON STILLWATER",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -134044,7 +134044,7 @@
   },
   {
     "county": "SUSSEX",
-    "municipality": "HARDYSTON TWP",
+    "municipality": "HARDYSTON",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -135682,7 +135682,7 @@
   },
   {
     "county": "SUSSEX",
-    "municipality": "STANHOPE BORO",
+    "municipality": "STANHOPE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -136774,7 +136774,7 @@
   },
   {
     "county": "UNION",
-    "municipality": "BERKELEY HEIGHTS TWP",
+    "municipality": "BERKELEY HEIGHTS",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -137047,7 +137047,7 @@
   },
   {
     "county": "UNION",
-    "municipality": "CLARK TWP",
+    "municipality": "CLARK",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -137320,7 +137320,7 @@
   },
   {
     "county": "UNION",
-    "municipality": "CRANFORD TWP",
+    "municipality": "CRANFORD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -137593,7 +137593,7 @@
   },
   {
     "county": "UNION",
-    "municipality": "ELIZABETH CITY",
+    "municipality": "ELIZABETH",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -139231,7 +139231,7 @@
   },
   {
     "county": "UNION",
-    "municipality": "MOUNTAINSIDE BORO",
+    "municipality": "MOUNTAINSIDE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -139504,7 +139504,7 @@
   },
   {
     "county": "UNION",
-    "municipality": "NEW PROVIDENCE BORO",
+    "municipality": "NEW PROVIDENCE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -139777,7 +139777,7 @@
   },
   {
     "county": "UNION",
-    "municipality": "PLAINFIELD CITY",
+    "municipality": "PLAINFIELD",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -140050,7 +140050,7 @@
   },
   {
     "county": "UNION",
-    "municipality": "RAHWAY CITY",
+    "municipality": "RAHWAY",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -144418,7 +144418,7 @@
   },
   {
     "county": "WARREN",
-    "municipality": "HACKETTSTOWN TOWN",
+    "municipality": "HACKETTSTOWN",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -144964,7 +144964,7 @@
   },
   {
     "county": "WARREN",
-    "municipality": "INDEPENDENCE TWP",
+    "municipality": "INDEPENDENCE",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
@@ -146602,7 +146602,7 @@
   },
   {
     "county": "WARREN",
-    "municipality": "PHILLIPSBURG TOWN",
+    "municipality": "PHILLIPSBURG",
     "dateRange": "JULY 2006 - JUNE 2007",
     "filings": {
       "priorPeriod": {
