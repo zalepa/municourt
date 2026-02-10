@@ -24,7 +24,16 @@
   .control-group { display: flex; flex-direction: column; gap: 4px; }
   .hidden { display: none !important; }
 
-  h1 { font-size: 16px; font-weight: 600; margin-right: auto; }
+  .title-group { display: flex; align-items: center; gap: 8px; margin-right: auto; }
+  h1 { font-size: 16px; font-weight: 600; }
+  .info-btn {
+    width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #999;
+    background: none; cursor: pointer; font-size: 13px; font-style: italic;
+    font-family: Georgia, "Times New Roman", serif; color: #999; line-height: 1;
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0; flex-shrink: 0;
+  }
+  .info-btn:hover { border-color: #4a90d9; color: #4a90d9; }
 
   .chips-bar {
     display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 24px;
@@ -44,15 +53,83 @@
     opacity: 0.6; font-weight: 700;
   }
   .chip .remove:hover { opacity: 1; }
+  .clear-btn {
+    background: none; border: 1px solid #ccc; color: #666; cursor: pointer;
+    padding: 3px 10px; border-radius: 16px; font-size: 12px; font-weight: 500;
+    margin-left: auto; white-space: nowrap;
+  }
+  .clear-btn:hover { background: #fee2e2; border-color: #fca5a5; color: #dc2626; }
 
-  #chart { width: 100%; height: calc(100vh - 140px); }
+  .chart-actions {
+    display: flex; justify-content: flex-end; padding: 4px 24px 0;
+    background: #f5f5f5;
+  }
+  .download-btn {
+    background: none; border: 1px solid #ccc; color: #666; cursor: pointer;
+    padding: 4px 10px; border-radius: 4px; font-size: 12px;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .download-btn:hover { background: #fff; border-color: #4a90d9; color: #4a90d9; }
+  .download-btn svg { width: 14px; height: 14px; }
+
+  #chart { width: 100%; height: calc(100vh - 180px); min-height: 300px; }
+
+  footer {
+    text-align: center; padding: 12px 24px; font-size: 12px; color: #999;
+    background: #f5f5f5;
+  }
+  footer a { color: #666; text-decoration: none; }
+  footer a:hover { color: #4a90d9; text-decoration: underline; }
+
+  /* Info modal */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+    z-index: 1000; align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff; border-radius: 8px; max-width: 520px; width: 90%;
+    padding: 24px; position: relative; box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal h2 { font-size: 18px; margin-bottom: 12px; }
+  .modal p { font-size: 14px; line-height: 1.6; color: #555; margin-bottom: 10px; }
+  .modal-close {
+    position: absolute; top: 12px; right: 16px; background: none; border: none;
+    font-size: 22px; cursor: pointer; color: #999; line-height: 1;
+  }
+  .modal-close:hover { color: #333; }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .controls { padding: 10px 12px; gap: 8px; }
+    .title-group { width: 100%; margin-right: 0; }
+    h1 { font-size: 15px; }
+    .control-group { flex: 1; min-width: 0; }
+    .control-group select { width: 100%; }
+    .controls .divider { display: none; }
+    .chips-bar { padding: 8px 12px; }
+    .chart-actions { padding: 4px 12px 0; }
+    #chart { height: calc(100vh - 220px); min-height: 250px; }
+    footer { padding: 10px 12px; }
+    .modal { width: 95%; padding: 20px; }
+  }
+  @media (max-width: 480px) {
+    .controls { padding: 8px 10px; gap: 6px; }
+    .control-group { flex-basis: calc(50% - 4px); }
+    #add-add-group { flex-basis: auto; }
+    #chart { height: calc(100vh - 260px); }
+  }
 </style>
 </head>
 <body>
 
 <!-- Row 1: Global controls -->
 <div class="controls">
-  <h1>Municipal Court Statistics</h1>
+  <div class="title-group">
+    <h1>Municipal Court Statistics</h1>
+    <button class="info-btn" id="info-btn" title="About this site">i</button>
+  </div>
   <div class="control-group">
     <label for="metric">Metric</label>
     <select id="metric"></select>
@@ -61,7 +138,7 @@
     <label for="type">Case Type</label>
     <select id="type"></select>
   </div>
-  <div style="border-left:1px solid #ddd; height:40px; margin:0 4px;"></div>
+  <div class="divider" style="border-left:1px solid #ddd; height:40px; margin:0 4px;"></div>
   <div class="control-group">
     <label for="add-level">Level</label>
     <select id="add-level">
@@ -84,8 +161,44 @@
 <!-- Row 2: Entity chips -->
 <div class="chips-bar" id="chips"></div>
 
+<!-- Chart actions -->
+<div class="chart-actions">
+  <button class="download-btn" id="download-btn" title="Download chart as image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Save Image
+  </button>
+</div>
+
 <!-- Chart -->
 <div id="chart"></div>
+
+<!-- Footer -->
+<footer>
+  <a href="https://github.com/hackJerseyCity/municourt" target="_blank" rel="noopener noreferrer">github.com/hackJerseyCity/municourt</a>
+</footer>
+
+<!-- Info modal -->
+<div class="modal-overlay" id="info-modal">
+  <div class="modal">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <h2>About This Site</h2>
+    <p>
+      This tool visualizes New Jersey municipal court statistics over time.
+      Data is sourced from the NJ Courts public reports and covers metrics
+      such as filings, resolutions, clearance rates, and case backlog across
+      all municipalities and counties in New Jersey.
+    </p>
+    <p>
+      Use the controls above to select a metric and case type, then add
+      state, county, or municipality-level entities to compare them on the
+      chart. You can add multiple entities to see trends side by side.
+    </p>
+    <p>
+      Built by <a href="https://github.com/hackJerseyCity" target="_blank" rel="noopener noreferrer">Hack Jersey City</a>.
+      Source code available on <a href="https://github.com/hackJerseyCity/municourt" target="_blank" rel="noopener noreferrer">GitHub</a>.
+    </p>
+  </div>
+</div>
 
 <script>
 const chart = echarts.init(document.getElementById('chart'));
@@ -105,6 +218,10 @@ const addCountyGroup = document.getElementById('add-county-group');
 const addMuniGroup = document.getElementById('add-muni-group');
 const addBtn = document.getElementById('add-btn');
 const chipsEl = document.getElementById('chips');
+const downloadBtn = document.getElementById('download-btn');
+const infoBtn = document.getElementById('info-btn');
+const infoModal = document.getElementById('info-modal');
+const modalClose = document.getElementById('modal-close');
 
 function populateSelect(sel, options) {
   sel.innerHTML = '';
@@ -184,6 +301,12 @@ function removeEntity(key) {
   fetchAndRender();
 }
 
+function clearAll() {
+  entities = [];
+  renderChips();
+  fetchAndRender();
+}
+
 function renderChips() {
   chipsEl.innerHTML = '';
   for (const e of entities) {
@@ -193,6 +316,13 @@ function renderChips() {
       e.key.replace(/"/g, '&quot;') + '">&times;</span>';
     chip.querySelector('.label').textContent = e.label;
     chipsEl.appendChild(chip);
+  }
+  if (entities.length > 0) {
+    const btn = document.createElement('button');
+    btn.className = 'clear-btn';
+    btn.textContent = 'Clear All';
+    btn.addEventListener('click', clearAll);
+    chipsEl.appendChild(btn);
   }
 }
 
@@ -354,6 +484,22 @@ async function init() {
   // Re-fetch when metric or type changes (applies to all entities)
   selMetric.addEventListener('change', fetchAndRender);
   selType.addEventListener('change', fetchAndRender);
+
+  // Download chart as PNG
+  downloadBtn.addEventListener('click', () => {
+    const url = chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: '#fff' });
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'municipal-court-stats.png';
+    a.click();
+  });
+
+  // Info modal
+  infoBtn.addEventListener('click', () => infoModal.classList.add('open'));
+  modalClose.addEventListener('click', () => infoModal.classList.remove('open'));
+  infoModal.addEventListener('click', (ev) => {
+    if (ev.target === infoModal) infoModal.classList.remove('open');
+  });
 
   // Pre-select STATEWIDE
   addEntity('state', '', '');
